@@ -5,9 +5,33 @@ public class Main {
     public static void main(String[] args) {
         Human me = new Human();
         me.firstName = "Mateusz";
-        myCar(me);
+//        myCar(me);
+//        myPet(me);
+        System.out.println(me.getSalary());
+        System.out.println(me.getSalary());
+        System.out.println(me.getSalary());
+        System.out.println(me.getSalary());
+        mySalary(me);
 
     }
+
+    static void mySalary(Human human){
+        while(true){
+            System.out.println("Co chcesz zrobić:");
+            System.out.println("1. Odczytać wartość wynagrodzenia");
+            System.out.println("2. Zmienić wynagrodzenie");
+            String input = scanner.next();
+            switch (input){
+                case "1" -> System.out.println(human.getSalary());
+                case "2" -> {
+                    System.out.println("Podaj wartość wynagrodzenia:");
+                    human.setSalary(Double.valueOf(scanner.next()));
+                }
+                default -> System.out.println("Nie zrozumiałem możesz powtórzyć");
+            }
+        }
+    }
+
 
     static void myCar(Human human){
         System.out.println("Podaj producenta samochodu:");
