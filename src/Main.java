@@ -5,13 +5,9 @@ public class Main {
     public static void main(String[] args) {
         Human me = new Human();
         me.firstName = "Mateusz";
-//        myCar(me);
+        myCar(me);
 //        myPet(me);
-        System.out.println(me.getSalary());
-        System.out.println(me.getSalary());
-        System.out.println(me.getSalary());
-        System.out.println(me.getSalary());
-        mySalary(me);
+//        mySalary(me);
 
     }
 
@@ -38,10 +34,12 @@ public class Main {
         String carProducer = scanner.next();
         System.out.println("Podaj model samochodu:");
         String carModel = scanner.next();
+        System.out.println("Podaj wartość samochodu:");
+        String carValue = scanner.next();
 
-        human.car = new Car(carProducer, carModel);
-        System.out.println("Samochód producenta:"+ human.car.producer + ", model: " + human.car.model );
-        System.out.println(human.car);
+        human.setCar(new Car(carProducer, carModel, Double.valueOf(carValue)));
+//        System.out.println("Samochód producenta:"+ human.car.producer + ", model: " + human.car.model );
+        System.out.println(human.getCar());
     }
 
     static void myPet(Human human){

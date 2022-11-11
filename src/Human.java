@@ -6,7 +6,28 @@ public class Human {
     private String[] salaryHistory = new String[100];
     private Integer salaryHistoryLength = 0;
     Animal pet;
-    Car car;
+    private Car car;
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        System.out.println(car.getValue());
+
+        if (car.getValue()/12 >= this.salary){
+            System.out.println("Nie zakupiono samochodu, zapisz się na studia i znajdź nową robotę albo idź po podwyżkę");
+            return;
+        }
+        if (car.getValue() < this.salary){
+            System.out.println("Udało się zakupić samochód za gotówkę");
+            this.car = car;
+        }
+        else if (car.getValue()/12 < this.salary){
+            System.out.println("Udało się zakupić samochód na kredyt");
+        }
+        this.car = car;
+    }
 
     public String getSalary(){
         salaryHistory[salaryHistoryLength] = LocalDateTime.now() + " odczytano wartość: " + salary + "\n";
