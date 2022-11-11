@@ -46,4 +46,8 @@ public class Animal {
             System.out.println("Dzwonię na policję...");
         }
     }
+
+    public String toString(){
+        return "Gatunek: " + this.species + ", żyje: " + this.isAlive + ", waga:" + this.weight;
+    }
 }

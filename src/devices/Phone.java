@@ -1,3 +1,5 @@
+package devices;
+
 public class Phone {
     final String producer, model;
     final Integer productionYear;
@@ -14,6 +16,6 @@ public class Phone {
     }
 
     public String toString(){
-        return "Producer: " + this.producer + " Model: " + this.model + "Operating system: "+this.operatingSystem;
+        return "Producent: " + this.producer + ", model: " + this.model + ", system operacyjny: "+this.operatingSystem;
     }
 }

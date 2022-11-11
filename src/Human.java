@@ -1,12 +1,19 @@
+import devices.Car;
+
 import java.time.LocalDateTime;
 
 public class Human {
-    String firstName, lastName;
+    final private String firstName, lastName;
     private Double salary = 3200.0;
     private String[] salaryHistory = new String[100];
     private Integer salaryHistoryLength = 0;
     Animal pet;
     private Car car;
+
+    public Human(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public Car getCar() {
         return car;
@@ -48,6 +55,10 @@ public class Human {
         System.out.println("Należy odebrać aneks do umowy z kadr.");
         System.out.println("ZUS i US otrzymały informację o zmianie wartości wynagrodzenia.");
         this.salary = salary;
+    }
+
+    public String toString(){
+        return "Imię: " + this.firstName + ", Nazwisko: " + this.lastName ;
     }
 
 }

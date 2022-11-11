@@ -1,10 +1,13 @@
+package devices;
+
 public class Car {
     final String producer;
     final String model;
     private Double value;
     String millage, color;
     Integer power;
-    Car(String producer, String model, Double value){
+
+    public Car(String producer, String model, Double value){
         this.producer = producer;
         this.model = model;
         this.value = value;
@@ -15,6 +18,6 @@ public class Car {
     }
 
     public String toString(){
-        return "Producer: " + this.producer + " Model: " + this.model;
+        return "Producent: " + this.producer + ", model: " + this.model + ", wartość:" + this.value;
     }
 }
