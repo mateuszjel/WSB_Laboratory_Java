@@ -2,12 +2,12 @@ public class Animal {
     private static final Double DEFAULT_DOG_WEIGHT = 10.0;
     private static final Double DEFAULT_CAT_WEIGHT = 7.0 ;
     private static final Double DEFAULT_BIRD_WEIGHT = 4.0 ;
-    String specie, name;
+    String species, name;
     Boolean isAlive;
-    Double weight;
+    private Double weight;
 
     Animal(String specie){
-        this.specie = specie;
+        this.species = specie;
         this.isAlive = true;
         switch (specie){
             case "pies" -> this.weight = DEFAULT_DOG_WEIGHT;
