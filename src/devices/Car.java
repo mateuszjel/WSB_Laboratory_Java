@@ -1,11 +1,21 @@
 package devices;
 
 public class Car extends Device {
-    String millage, color;
-    Integer power;
+    private String millage, color, motorType;
+    private Integer power;
 
-    public Car(String producer, String model, Integer yearOfProduction, Double value){
+    public Car(String producer, String model, Integer yearOfProduction, Double value, String motorType){
         super(producer, model, yearOfProduction, value);
+        this.motorType = motorType;
+    }
+
+    @Override
+    void recharge(Integer percentage) {
+        if(motorType != "elektryczny"){
+            System.out.println("Ładować można tylko elektryczne samochody");
+            return;
+        }
+        this.batteryStatus += percentage;
     }
 
     public Double getValue() {

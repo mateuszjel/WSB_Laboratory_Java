@@ -7,6 +7,15 @@ public class Phone extends Device{
         super(producer, model, yearOfProduction, value);
     }
 
+    @Override
+    void recharge(Integer percentage) {
+        this.batteryStatus += percentage;
+        if (batteryStatus > 100.0){
+            System.out.println("Bateria została przeładowana");
+            this.batteryStatus = 100.0;
+        }
+    }
+
     public void setOperatingSystem(String system){
         this.operatingSystem = system;
     }

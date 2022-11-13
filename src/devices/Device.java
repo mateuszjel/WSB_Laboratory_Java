@@ -1,9 +1,10 @@
 package devices;
 
-public class Device {
+public abstract class Device {
     protected final String producer, model;
     protected final Integer yearOfProduction;
     protected final Double value;
+    protected Double batteryStatus;
 
 
     public Device(String producer, String model, Integer yearOfProduction, Double value) {
@@ -11,5 +12,8 @@ public class Device {
         this.model = model;
         this.yearOfProduction = yearOfProduction;
         this.value = value;
+        this.batteryStatus = 0.0;
     }
+
+    abstract void recharge(Integer percentage);
 }

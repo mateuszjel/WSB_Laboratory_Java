@@ -1,4 +1,5 @@
 import creatures.Animal;
+import creatures.Human;
 import creatures.Pet;
 import devices.Car;
 import devices.Phone;
@@ -34,7 +35,7 @@ public class Main {
     }
 
     static void printToStringFunction(){
-        Car car = new Car("Mitsubishi", "Lancer",2014, 40000.0);
+        Car car = new Car("Mitsubishi", "Lancer",2014, 40000.0, "benzyna");
         Human human = new Human("Jan", "Kowalski");
         Animal animal = new Animal("papuga");
         Phone phone = new Phone("Vivo","Y33s", 2021, 1200.0);
@@ -45,8 +46,8 @@ public class Main {
     }
 
     static void carComparison(){
-        Car car1 = new Car("Mitsubishi", "Lancer",2014,40000.0);
-        Car car2 = new Car("Mitsubishi", "Lancer",2014, 40000.0);
+        Car car1 = new Car("Mitsubishi", "Lancer",2014,40000.0, "benzyna");
+        Car car2 = new Car("Mitsubishi", "Lancer",2014, 40000.0, "benzyna");
         System.out.println("Funkcja equals: " + car1.equals(car2));
         System.out.println("car1 hashcode: " + car1.hashCode());
         System.out.println("car2 hashcode: " + car2.hashCode());
@@ -63,8 +64,10 @@ public class Main {
         Integer yearOfProduction = Integer.parseInt(scanner.next());
         System.out.println("Podaj wartość samochodu:");
         String carValue = scanner.next();
+        System.out.println("Podaj typ silnika:");
+        String motorType = scanner.next();
 
-        human.setCar(new Car(carProducer, carModel, yearOfProduction, Double.valueOf(carValue)));
+        human.setCar(new Car(carProducer, carModel, yearOfProduction, Double.valueOf(carValue), motorType));
 //        System.out.println("Samochód producenta:"+ human.car.producer + ", model: " + human.car.model );
         System.out.println(human.getCar());
     }

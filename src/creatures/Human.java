@@ -1,3 +1,5 @@
+package creatures;
+
 import creatures.Animal;
 import creatures.Pet;
 import devices.Car;
@@ -9,7 +11,7 @@ public class Human extends Animal {
     private Double salary;
     private String[] salaryHistory = new String[100];
     private Integer salaryHistoryLength = 0;
-    Pet pet;
+    public Pet pet;
     private Car car;
 
     public Human(String firstName, String lastName){
