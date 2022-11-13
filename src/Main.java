@@ -1,3 +1,5 @@
+import creatures.Animal;
+import creatures.Pet;
 import devices.Car;
 import devices.Phone;
 
@@ -32,10 +34,10 @@ public class Main {
     }
 
     static void printToStringFunction(){
-        Car car = new Car("Mitsubishi", "Lancer", 40000.0);
+        Car car = new Car("Mitsubishi", "Lancer",2014, 40000.0);
         Human human = new Human("Jan", "Kowalski");
         Animal animal = new Animal("papuga");
-        Phone phone = new Phone("Vivo","Y33s", 2021);
+        Phone phone = new Phone("Vivo","Y33s", 2021, 1200.0);
         System.out.println("Samochód: "+ car);
         System.out.println("Człowiek: "+ human);
         System.out.println("Zwierzę: "+ animal);
@@ -43,8 +45,8 @@ public class Main {
     }
 
     static void carComparison(){
-        Car car1 = new Car("Mitsubishi", "Lancer",40000.0);
-        Car car2 = new Car("Mitsubishi", "Lancer",40000.0);
+        Car car1 = new Car("Mitsubishi", "Lancer",2014,40000.0);
+        Car car2 = new Car("Mitsubishi", "Lancer",2014, 40000.0);
         System.out.println("Funkcja equals: " + car1.equals(car2));
         System.out.println("car1 hashcode: " + car1.hashCode());
         System.out.println("car2 hashcode: " + car2.hashCode());
@@ -57,10 +59,12 @@ public class Main {
         String carProducer = scanner.next();
         System.out.println("Podaj model samochodu:");
         String carModel = scanner.next();
+        System.out.println("Podaj rok produkcji:");
+        Integer yearOfProduction = Integer.parseInt(scanner.next());
         System.out.println("Podaj wartość samochodu:");
         String carValue = scanner.next();
 
-        human.setCar(new Car(carProducer, carModel, Double.valueOf(carValue)));
+        human.setCar(new Car(carProducer, carModel, yearOfProduction, Double.valueOf(carValue)));
 //        System.out.println("Samochód producenta:"+ human.car.producer + ", model: " + human.car.model );
         System.out.println(human.getCar());
     }
@@ -68,12 +72,12 @@ public class Main {
     static void myPet(Human human){
         System.out.println("Podaj typ zwierzęcia:");
         String petSpecie = scanner.next();
-        Animal pet = new Animal(petSpecie);
+        Pet pet = new Pet(petSpecie);
 
-        pet.name = "Czarek";
+        pet.setName("Czarek");
         human.pet = pet;
 
-        System.out.println(human.pet.name);
+        System.out.println(human.pet.getName());
 
         while(true){
             System.out.println("Co chcesz zrobić:");

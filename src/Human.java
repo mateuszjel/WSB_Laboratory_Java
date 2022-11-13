@@ -1,18 +1,22 @@
+import creatures.Animal;
+import creatures.Pet;
 import devices.Car;
 
 import java.time.LocalDateTime;
 
-public class Human {
+public class Human extends Animal {
     final private String firstName, lastName;
-    private Double salary = 3200.0;
+    private Double salary;
     private String[] salaryHistory = new String[100];
     private Integer salaryHistoryLength = 0;
-    Animal pet;
+    Pet pet;
     private Car car;
 
     public Human(String firstName, String lastName){
+        super("homo sapiens");
         this.firstName = firstName;
         this.lastName = lastName;
+        this.salary = 0.0;
     }
 
     public Car getCar() {

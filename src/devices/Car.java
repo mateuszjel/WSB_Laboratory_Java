@@ -1,20 +1,15 @@
 package devices;
 
-public class Car {
-    final String producer;
-    final String model;
-    private Double value;
+public class Car extends Device {
     String millage, color;
     Integer power;
 
-    public Car(String producer, String model, Double value){
-        this.producer = producer;
-        this.model = model;
-        this.value = value;
+    public Car(String producer, String model, Integer yearOfProduction, Double value){
+        super(producer, model, yearOfProduction, value);
     }
 
     public Double getValue() {
-        return value;
+        return this.value;
     }
 
     public String toString(){

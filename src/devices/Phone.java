@@ -1,14 +1,10 @@
 package devices;
 
-public class Phone {
-    final String producer, model;
-    final Integer productionYear;
+public class Phone extends Device{
     String operatingSystem="N/A";
 
-    public Phone(String producer, String model, Integer pruductionYear) {
-        this.producer = producer;
-        this.model = model;
-        this.productionYear = pruductionYear;
+    public Phone(String producer, String model, Integer yearOfProduction, Double value) {
+        super(producer, model, yearOfProduction, value);
     }
 
     public void setOperatingSystem(String system){
@@ -16,6 +12,6 @@ public class Phone {
     }
 
     public String toString(){
-        return "Producent: " + this.producer + ", model: " + this.model + ", system operacyjny: "+this.operatingSystem;
+        return "Producent: " + this.producer + ", model: " + this.model + ", rok produkcji: " + this.yearOfProduction + ", system operacyjny: "+this.operatingSystem;
     }
 }
