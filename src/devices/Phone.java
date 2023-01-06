@@ -1,5 +1,7 @@
 package devices;
 
+import creatures.Human;
+
 public class Phone extends Device{
     String operatingSystem="N/A";
 
@@ -39,5 +41,26 @@ public class Phone extends Device{
         if (this.batteryStatus <= 0){
             System.out.println("Bateria telefonu rozładowana");
         }
+    }
+
+    @Override
+    public void sell(Human seller, Human buyer, Double price) {
+        if (seller.getPhone() == null){
+            System.out.println("Sprzedający nie posiada zwierzęcia");
+            return;
+        }
+        if (buyer.getCash() < price){
+            System.out.println("Kupujący nie posiada wystarczającej ilości gotówki");
+            return;
+        }
+        buyer.removeCash(price);
+        buyer.setPhone(seller.getPhone());
+        seller.setPhone(null);
+        seller.addCash(price);
+        System.out.println("Telefon został sprzedany za "+ price + " zł");
+        System.out.println("Telefon sprzedającego: " + seller.getCar());
+        System.out.println("Telefon kupującego: " + buyer.getCar());
+        System.out.println("Gotówka sprzedającego: " + seller.getCash());
+        System.out.println("Gotówka kupującego: " + buyer.getCash());
     }
 }

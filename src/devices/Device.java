@@ -1,6 +1,8 @@
 package devices;
 
-public abstract class Device {
+import creatures.Sellable;
+
+public abstract class Device implements Sellable {
     protected final String producer, model;
     protected final Integer yearOfProduction;
     protected final Double value;
@@ -17,4 +19,5 @@ public abstract class Device {
 
     abstract void recharge(Integer percentage);
     abstract void turnOn(Integer timeSeconds) throws InterruptedException;
+
 }

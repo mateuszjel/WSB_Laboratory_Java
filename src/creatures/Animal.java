@@ -1,6 +1,6 @@
 package creatures;
 
-public class Animal {
+public abstract class Animal implements Feedable{
     private static final Double DEFAULT_DOG_WEIGHT = 10.0;
     private static final Double DEFAULT_CAT_WEIGHT = 7.0 ;
     private static final Double DEFAULT_BIRD_WEIGHT = 4.0 ;
@@ -24,16 +24,6 @@ public class Animal {
         }
     }
 
-    public void feed(){
-        this.weight += 0.5;
-        if(this.isAlive){
-            System.out.println("Dzięki za żarcie");
-            System.out.println("Waga zwierzaka wynosi: " + this.weight );
-            return;
-        }
-        System.out.println("Wszystko dobrze z głową?");
-    }
-
     public void takeForAWalk(){
         if(this.isAlive){
             this.weight -= 0.5;
@@ -53,5 +43,27 @@ public class Animal {
 
     public String toString(){
         return "Gatunek: " + this.species + ", żyje: " + this.isAlive + ", waga:" + this.weight;
+    }
+
+    @Override
+    public void feed() {
+        this.weight += 0.5;
+        if(this.isAlive){
+            System.out.println("Dzięki za żarcie");
+            System.out.println("Waga zwierzaka wynosi: " + this.weight );
+            return;
+        }
+        System.out.println("Wszystko dobrze z głową?");
+    }
+
+    @Override
+    public void feed(Double foodWeight) {
+        this.weight +=foodWeight;
+        if(this.isAlive){
+            System.out.println("Dzięki za żarcie");
+            System.out.println("Waga zwierzaka wynosi: " + this.weight );
+            return;
+        }
+        System.out.println("Wszystko dobrze z głową?");
     }
 }

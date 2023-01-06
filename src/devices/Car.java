@@ -1,5 +1,7 @@
 package devices;
 
+import creatures.Human;
+
 public class Car extends Device {
     private String millage, color, motorType;
     private Integer power;
@@ -41,5 +43,26 @@ public class Car extends Device {
         if (this.batteryStatus <= 3){
             System.out.println("Bateria baterii samochodu wynosi mniej niż 3% zabezpieczenie przed całkowitym rozładowniem");
         }
+    }
+
+    @Override
+    public void sell(Human seller, Human buyer, Double price) {
+        if (seller.getCar() == null){
+            System.out.println("Sprzedający nie posiada samochodu");
+            return;
+        }
+        if (buyer.getCash() < price){
+            System.out.println("Kupujący nie posiada wystarczającej ilości gotówki");
+            return;
+        }
+        buyer.removeCash(price);
+        buyer.setCar(seller.getCar());
+        seller.setCar(null);
+        seller.addCash(price);
+        System.out.println("Samochód został sprzedany za "+ price + " zł");
+        System.out.println("Samochód sprzedającego: " + seller.getCar());
+        System.out.println("Samochód kupującego: " + buyer.getCar());
+        System.out.println("Gotówka sprzedającego: " + seller.getCash());
+        System.out.println("Gotówka kupującego: " + buyer.getCash());
     }
 }

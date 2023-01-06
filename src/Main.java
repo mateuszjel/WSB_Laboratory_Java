@@ -11,11 +11,34 @@ public class Main {
     public static void main(String[] args) {
         Human me = new Human("Mateusz", "Kowalski");
 //        myCar(me);
-//        myPet(me);
+        myPet(me);
 //        mySalary(me);
 //        carComparison();
 //        printToStringFunction();
-        useDeviceBaterry();
+//        useDeviceBaterry();
+//        sellPet(me);
+//        sellCar(me);
+    }
+
+    static void sellCar(Human seller){
+        Human buyer = new Human("Adam", "Nowak");
+        buyer.setSalary(3000.0);
+        buyer.giveSalary();
+        seller.setSalary(50000.0);
+        seller.buyCar(new Car("Mitsubishi", "Lancer",2014, 40000.0, "elektryczny"));
+        seller.getCar().sell(seller,buyer,2000.0);
+    }
+
+    static void  sellPet(Human seller){
+        Human buyer = new Human("Adam", "Nowak");
+        buyer.setSalary(3000.0);
+        buyer.giveSalary();
+        seller.setPet(new Pet("pies"));
+        seller.getPet().sell(seller,buyer,2000.0);
+
+
+
+
     }
 
     static void useDeviceBaterry(){
@@ -47,7 +70,7 @@ public class Main {
     static void printToStringFunction(){
         Car car = new Car("Mitsubishi", "Lancer",2014, 40000.0, "benzyna");
         Human human = new Human("Jan", "Kowalski");
-        Animal animal = new Animal("papuga");
+        Animal animal = new Pet("papuga");
         Phone phone = new Phone("Vivo","Y33s", 2021, 1200.0);
         System.out.println("Samochód: "+ car);
         System.out.println("Człowiek: "+ human);
@@ -77,7 +100,7 @@ public class Main {
         System.out.println("Podaj typ silnika:");
         String motorType = scanner.next();
 
-        human.setCar(new Car(carProducer, carModel, yearOfProduction, Double.valueOf(carValue), motorType));
+        human.buyCar(new Car(carProducer, carModel, yearOfProduction, Double.valueOf(carValue), motorType));
 //        System.out.println("Samochód producenta:"+ human.car.producer + ", model: " + human.car.model );
         System.out.println(human.getCar());
     }
@@ -88,9 +111,9 @@ public class Main {
         Pet pet = new Pet(petSpecie);
 
         pet.setName("Czarek");
-        human.pet = pet;
+        human.setPet(pet);
 
-        System.out.println(human.pet.getName());
+        System.out.println(human.getPet().getName());
 
         while(true){
             System.out.println("Co chcesz zrobić:");
@@ -98,8 +121,8 @@ public class Main {
             System.out.println("2. Iść na spacer");
             String input = scanner.next();
             switch (input){
-                case "1" -> human.pet.feed();
-                case "2" -> human.pet.takeForAWalk();
+                case "1" -> human.getPet().feed();
+                case "2" -> human.getPet().takeForAWalk();
                 default -> System.out.println("Nie zrozumiałem możesz powtórzyć");
             }
         }
