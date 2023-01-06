@@ -1,9 +1,10 @@
 import creatures.Animal;
 import creatures.Human;
 import creatures.Pet;
-import devices.Car;
-import devices.Phone;
+import devices.*;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Scanner;
 
 public class Main {
@@ -11,13 +12,28 @@ public class Main {
     public static void main(String[] args) {
         Human me = new Human("Mateusz", "Kowalski");
 //        myCar(me);
-        myPet(me);
+//        myPet(me);
 //        mySalary(me);
 //        carComparison();
 //        printToStringFunction();
-//        useDeviceBaterry();
+        useDeviceBaterry();
 //        sellPet(me);
 //        sellCar(me);
+//        phoneApps();
+    }
+
+    static void phoneApps(){
+        Phone phone = new Phone("Vivo","Y33s", 2021, 1200.0);
+        phone.installAnnApp("app1");
+        phone.installAnnApp("app2","2.0");
+        phone.installAnnApp("app3","2.0", "java.com");
+        phone.installAnnApp(new String[]{"app4","ap5"});
+        try {
+            phone.installAnnApp(new URL("https://java.com/myapp/version/2.5"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        phone.getApplications();
     }
 
     static void sellCar(Human seller){
@@ -25,7 +41,7 @@ public class Main {
         buyer.setSalary(3000.0);
         buyer.giveSalary();
         seller.setSalary(50000.0);
-        seller.buyCar(new Car("Mitsubishi", "Lancer",2014, 40000.0, "elektryczny"));
+        seller.buyCar(new Electric("Mitsubishi", "Lancer",2014, 40000.0));
         seller.getCar().sell(seller,buyer,2000.0);
     }
 
@@ -42,7 +58,7 @@ public class Main {
     }
 
     static void useDeviceBaterry(){
-        Car car = new Car("Mitsubishi", "Lancer",2014, 40000.0, "elektryczny");
+        Car car = new Electric("Mitsubishi", "Lancer",2014, 40000.0);
         Phone phone = new Phone("Vivo","Y33s", 2021, 1200.0);
         car.recharge(50);
         phone.recharge(50);
@@ -68,7 +84,7 @@ public class Main {
     }
 
     static void printToStringFunction(){
-        Car car = new Car("Mitsubishi", "Lancer",2014, 40000.0, "benzyna");
+        Car car = new Disel("Mitsubishi", "Lancer",2014, 40000.0);
         Human human = new Human("Jan", "Kowalski");
         Animal animal = new Pet("papuga");
         Phone phone = new Phone("Vivo","Y33s", 2021, 1200.0);
@@ -79,8 +95,8 @@ public class Main {
     }
 
     static void carComparison(){
-        Car car1 = new Car("Mitsubishi", "Lancer",2014,40000.0, "benzyna");
-        Car car2 = new Car("Mitsubishi", "Lancer",2014, 40000.0, "benzyna");
+        Car car1 = new Disel("Mitsubishi", "Lancer",2014,40000.0);
+        Car car2 = new Disel("Mitsubishi", "Lancer",2014, 40000.0);
         System.out.println("Funkcja equals: " + car1.equals(car2));
         System.out.println("car1 hashcode: " + car1.hashCode());
         System.out.println("car2 hashcode: " + car2.hashCode());
@@ -97,10 +113,8 @@ public class Main {
         Integer yearOfProduction = Integer.parseInt(scanner.next());
         System.out.println("Podaj wartość samochodu:");
         String carValue = scanner.next();
-        System.out.println("Podaj typ silnika:");
-        String motorType = scanner.next();
 
-        human.buyCar(new Car(carProducer, carModel, yearOfProduction, Double.valueOf(carValue), motorType));
+        human.buyCar(new LPG(carProducer, carModel, yearOfProduction, Double.valueOf(carValue)));
 //        System.out.println("Samochód producenta:"+ human.car.producer + ", model: " + human.car.model );
         System.out.println(human.getCar());
     }

@@ -2,8 +2,9 @@ package devices;
 
 import creatures.Human;
 
-public class Car extends Device {
+public abstract class Car extends Device {
     private String millage, color, motorType;
+    protected Double fuelTank = 0.0;
     private Integer power;
 
     public Car(String producer, String model, Integer yearOfProduction, Double value, String motorType){
@@ -65,4 +66,6 @@ public class Car extends Device {
         System.out.println("Gotówka sprzedającego: " + seller.getCash());
         System.out.println("Gotówka kupującego: " + buyer.getCash());
     }
+
+    public abstract void refuel();
 }

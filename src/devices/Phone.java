@@ -2,8 +2,15 @@ package devices;
 
 import creatures.Human;
 
+import java.net.URL;
+
 public class Phone extends Device{
     String operatingSystem="N/A";
+    static final String defaultServerAddress = "127.0.0.1";
+    static final Integer serverPort = 80;
+    static final String defaultVersion = "1.5.2";
+    private PhoneApp[] installedApplications = new PhoneApp[100];
+    private Integer applicationsCount = 0;
 
     public Phone(String producer, String model, Integer yearOfProduction, Double value) {
         super(producer, model, yearOfProduction, value);
@@ -62,5 +69,34 @@ public class Phone extends Device{
         System.out.println("Telefon kupującego: " + buyer.getCar());
         System.out.println("Gotówka sprzedającego: " + seller.getCash());
         System.out.println("Gotówka kupującego: " + buyer.getCash());
+    }
+
+    public void installAnnApp(String name){
+        installedApplications[applicationsCount] = new PhoneApp(name, defaultVersion,defaultServerAddress,serverPort);
+        applicationsCount +=1;
+    }
+    public void installAnnApp(String name, String version){
+        installedApplications[applicationsCount] = new PhoneApp(name, version,defaultServerAddress,serverPort);
+        applicationsCount +=1;
+    }
+    public void installAnnApp(String name, String version, String serverAddress){
+        installedApplications[applicationsCount] = new PhoneApp(name, version,serverAddress,serverPort);
+        applicationsCount +=1;
+    }
+    public void installAnnApp(String[] appNames){
+        for (String appName:appNames) {
+            installedApplications[applicationsCount] = new PhoneApp(appName, defaultVersion,defaultServerAddress,serverPort);
+            applicationsCount +=1;
+        }
+    }
+    public void installAnnApp(URL url){
+        installedApplications[applicationsCount] = new PhoneApp(url);
+        applicationsCount +=1;
+    }
+
+    public void  getApplications(){
+        for (Integer i=0; i<applicationsCount; i++){
+            System.out.println(installedApplications[i]);
+        }
     }
 }
