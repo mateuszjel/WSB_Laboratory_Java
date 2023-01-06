@@ -16,4 +16,5 @@ public abstract class Device {
     }
 
     abstract void recharge(Integer percentage);
+    abstract void turnOn(Integer timeSeconds) throws InterruptedException;
 }

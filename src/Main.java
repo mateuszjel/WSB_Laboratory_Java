@@ -14,7 +14,17 @@ public class Main {
 //        myPet(me);
 //        mySalary(me);
 //        carComparison();
-        printToStringFunction();
+//        printToStringFunction();
+        useDeviceBaterry();
+    }
+
+    static void useDeviceBaterry(){
+        Car car = new Car("Mitsubishi", "Lancer",2014, 40000.0, "elektryczny");
+        Phone phone = new Phone("Vivo","Y33s", 2021, 1200.0);
+        car.recharge(50);
+        phone.recharge(50);
+        phone.turnOn(5);
+        car.turnOn(20);
     }
 
     static void mySalary(Human human){
