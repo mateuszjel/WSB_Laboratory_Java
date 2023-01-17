@@ -11,6 +11,7 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         Human me = new Human("Mateusz", "Kowalski");
+        carOwner(me);
 //        myCar(me);
 //        myPet(me);
 //        mySalary(me);
@@ -21,6 +22,25 @@ public class Main {
 //        sellCar(me);
 //        sortCars(me);
 //        phoneApps();
+    }
+
+    static void carOwner(Human humanOne){
+        Integer carIndex = null;
+        Human humanTwo = new Human("Adam", "Nowak");
+        Human humanThree = new Human("Krzysztof", "Wąski");
+        Car car = new Disel("Mitsubishi", "Lancer",2013, 40000.0);
+        humanOne.setSalary(5000.0);
+        humanTwo.setSalary(20000.0);
+        humanTwo.giveSalary();
+        humanThree.setSalary(10000.0);
+        humanThree.giveSalary();
+        humanOne.buyCar(car);
+        car.sell(humanOne,humanTwo,19999.0);
+        car.sell(humanTwo,humanThree,9999.0);
+        System.out.println("Czy druga była właścicielem samochodu: " + car.wasOwner(humanTwo));
+        System.out.println("Czy druga osoba sprzedała samochód osobie numer jeden: " + car.wasSell(humanTwo,humanOne));
+        System.out.println("Czy druga osoba sprzedała samochód osobie numer trzy: " + car.wasSell(humanTwo,humanThree));
+        System.out.println("Czy samochód uczestniczył w " + car.getTransactionsCount() + " tranzakcjach");
     }
 
     static void sortCars(Human human){
@@ -50,7 +70,7 @@ public class Main {
         phone.getApplications();
     }
 
-    static void sellCar(Human seller){
+    static Human sellCar(Human seller){
         Human buyer = new Human("Adam", "Nowak");
         buyer.setSalary(3000.0);
         buyer.giveSalary();
@@ -58,6 +78,7 @@ public class Main {
         Integer carIndex = seller.buyCar(new Electric("Mitsubishi", "Lancer",2014, 40000.0));
 //        seller.getCar(carIndex).sell(buyer,seller,2000.0);
         seller.getCar(carIndex).sell(seller,buyer,2000.0);
+        return buyer;
     }
 
     static void  sellPet(Human seller){

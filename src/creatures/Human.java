@@ -72,6 +72,7 @@ public class Human extends Animal {
         } else {
             for (int i = 0; i < this.getGarageSize(); i++) {
                 if (this.getCar(i) == null) {
+                    car.addOwner(this);
                     this.setCar(car, i);
                     carIndex = i;
                     break;

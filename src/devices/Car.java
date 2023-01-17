@@ -2,14 +2,21 @@ package devices;
 
 import creatures.Human;
 
+import java.util.ArrayList;
+
 public abstract class Car extends Device {
     private String millage, color, motorType;
+    private ArrayList<Human> owners = new ArrayList<Human>();
     protected Double fuelTank = 0.0;
     private Integer power;
 
     public Car(String producer, String model, Integer yearOfProduction, Double value, String motorType){
         super(producer, model, yearOfProduction, value);
         this.motorType = motorType;
+    }
+
+    public void addOwner(Human newOwner){
+        owners.add(newOwner);
     }
 
     @Override
@@ -46,6 +53,34 @@ public abstract class Car extends Device {
         }
     }
 
+    public Boolean wasOwner(Human human){
+        for(Human owner: this.owners){
+            if(owner.hashCode() == human.hashCode()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Boolean wasSell(Human seller, Human buyer){
+        if (this.owners.size() < 2){
+            return false;
+        }
+        for(int i=1;i < this.owners.size(); i++){
+            if(this.owners.get(i).hashCode() == buyer.hashCode() && this.owners.get(i-1).hashCode() == seller.hashCode()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Integer getTransactionsCount(){
+        if (this.owners.size() == 0){
+            return 0;
+        }
+        return this.owners.size()-1;
+    }
+
     @Override
     public void sell(Human seller, Human buyer, Double price) {
         Integer sellerGarageIndex = null;
@@ -56,7 +91,7 @@ public abstract class Car extends Device {
                 break;
             }
         }
-        if (sellerGarageIndex == null){
+        if (sellerGarageIndex == null || this.owners.get(this.owners.size() - 1).hashCode() != seller.hashCode()){
             System.out.println("Sprzedający nie posiada samochodu");
             return;
         }
@@ -76,6 +111,7 @@ public abstract class Car extends Device {
             return;
         }
 
+        this.owners.add(buyer);
         buyer.removeCash(price);
         buyer.setCar(seller.getCar(sellerGarageIndex), buyerGarageFreeSlot);
         seller.setCar(null, sellerGarageIndex);
@@ -85,6 +121,7 @@ public abstract class Car extends Device {
         System.out.println("Samochód kupującego: " + buyer.getCar(buyerGarageFreeSlot));
         System.out.println("Gotówka sprzedającego: " + seller.getCash());
         System.out.println("Gotówka kupującego: " + buyer.getCash());
+
     }
 
     public abstract void refuel();
