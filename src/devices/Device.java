@@ -17,6 +17,10 @@ public abstract class Device implements Sellable {
         this.batteryStatus = 0.0;
     }
 
+    public Integer getYearOfProduction() {
+        return yearOfProduction;
+    }
+
     abstract void recharge(Integer percentage);
     abstract void turnOn(Integer timeSeconds) throws InterruptedException;
 

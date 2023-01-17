@@ -16,10 +16,24 @@ public class Main {
 //        mySalary(me);
 //        carComparison();
 //        printToStringFunction();
-        useDeviceBaterry();
+//        useDeviceBaterry();
 //        sellPet(me);
 //        sellCar(me);
+//        sortCars(me);
 //        phoneApps();
+    }
+
+    static void sortCars(Human human){
+        human.setSalary(10000.0);
+        human.buyCar(new Electric("Mitsubishi", "Lancer",2014, 40000.0));
+        human.buyCar(new Electric("Mitsubishi", "Lancer",2013, 40000.0));
+        human.buyCar(new Electric("Mitsubishi", "Lancer",2012, 40000.0));
+        human.buyCar(new Electric("Mitsubishi", "Lancer",2011, 40000.0));
+        human.buyCar(new Electric("Mitsubishi", "Lancer",2010, 40000.0));
+        human.sortCarsByYear();
+        for(int i=0; i < human.getGarageSize(); i++){
+            System.out.println(human.getCar(i));
+        }
     }
 
     static void phoneApps(){
@@ -41,8 +55,9 @@ public class Main {
         buyer.setSalary(3000.0);
         buyer.giveSalary();
         seller.setSalary(50000.0);
-        seller.buyCar(new Electric("Mitsubishi", "Lancer",2014, 40000.0));
-        seller.getCar().sell(seller,buyer,2000.0);
+        Integer carIndex = seller.buyCar(new Electric("Mitsubishi", "Lancer",2014, 40000.0));
+//        seller.getCar(carIndex).sell(buyer,seller,2000.0);
+        seller.getCar(carIndex).sell(seller,buyer,2000.0);
     }
 
     static void  sellPet(Human seller){
@@ -113,10 +128,13 @@ public class Main {
         Integer yearOfProduction = Integer.parseInt(scanner.next());
         System.out.println("Podaj wartość samochodu:");
         String carValue = scanner.next();
+        human.setSalary(4000.0);
 
-        human.buyCar(new LPG(carProducer, carModel, yearOfProduction, Double.valueOf(carValue)));
+        Integer carIndex = human.buyCar(new LPG(carProducer, carModel, yearOfProduction, Double.valueOf(carValue)));
 //        System.out.println("Samochód producenta:"+ human.car.producer + ", model: " + human.car.model );
-        System.out.println(human.getCar());
+        if (carIndex != null) {
+            System.out.println(human.getCar(carIndex));
+        }
     }
 
     static void myPet(Human human){

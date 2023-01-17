@@ -65,8 +65,8 @@ public class Phone extends Device{
         seller.setPhone(null);
         seller.addCash(price);
         System.out.println("Telefon został sprzedany za "+ price + " zł");
-        System.out.println("Telefon sprzedającego: " + seller.getCar());
-        System.out.println("Telefon kupującego: " + buyer.getCar());
+        System.out.println("Telefon sprzedającego: " + seller.getPhone());
+        System.out.println("Telefon kupującego: " + buyer.getPhone());
         System.out.println("Gotówka sprzedającego: " + seller.getCash());
         System.out.println("Gotówka kupującego: " + buyer.getCash());
     }

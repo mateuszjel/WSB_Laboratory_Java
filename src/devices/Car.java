@@ -26,7 +26,7 @@ public abstract class Car extends Device {
     }
 
     public String toString(){
-        return "Producent: " + this.producer + ", model: " + this.model + ", wartość:" + this.value;
+        return "Producent: " + this.producer + ", model: " + this.model + ", wartość:" + this.value + ", rok produkcji: " + this.yearOfProduction;
     }
 
     @Override
@@ -48,21 +48,41 @@ public abstract class Car extends Device {
 
     @Override
     public void sell(Human seller, Human buyer, Double price) {
-        if (seller.getCar() == null){
+        Integer sellerGarageIndex = null;
+        Integer buyerGarageFreeSlot = null;
+        for (int i=0;i < seller.getGarageSize(); i++){
+            if (seller.getCar(i) != null && seller.getCar(i).hashCode()==this.hashCode()){
+                sellerGarageIndex = i;
+                break;
+            }
+        }
+        if (sellerGarageIndex == null){
             System.out.println("Sprzedający nie posiada samochodu");
             return;
         }
+        for (int i=0;i < buyer.getGarageSize(); i++){
+            if (buyer.getCar(i) == null){
+                buyerGarageFreeSlot = i;
+                break;
+            }
+        }
+        if (buyerGarageFreeSlot == null){
+            System.out.println("Kupujący nie posiada wolnych miejsc w garażu");
+            return;
+        }
+
         if (buyer.getCash() < price){
             System.out.println("Kupujący nie posiada wystarczającej ilości gotówki");
             return;
         }
+
         buyer.removeCash(price);
-        buyer.setCar(seller.getCar());
-        seller.setCar(null);
+        buyer.setCar(seller.getCar(sellerGarageIndex), buyerGarageFreeSlot);
+        seller.setCar(null, sellerGarageIndex);
         seller.addCash(price);
         System.out.println("Samochód został sprzedany za "+ price + " zł");
-        System.out.println("Samochód sprzedającego: " + seller.getCar());
-        System.out.println("Samochód kupującego: " + buyer.getCar());
+        System.out.println("Samochód sprzedającego: " + seller.getCar(sellerGarageIndex));
+        System.out.println("Samochód kupującego: " + buyer.getCar(buyerGarageFreeSlot));
         System.out.println("Gotówka sprzedającego: " + seller.getCash());
         System.out.println("Gotówka kupującego: " + buyer.getCash());
     }
