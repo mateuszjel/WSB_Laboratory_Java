@@ -11,7 +11,7 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         Human me = new Human("Mateusz", "Kowalski");
-        carOwner(me);
+//        carOwner(me);
 //        myCar(me);
 //        myPet(me);
 //        mySalary(me);
@@ -21,7 +21,7 @@ public class Main {
 //        sellPet(me);
 //        sellCar(me);
 //        sortCars(me);
-//        phoneApps();
+        phoneApps(me);
     }
 
     static void carOwner(Human humanOne){
@@ -56,18 +56,26 @@ public class Main {
         }
     }
 
-    static void phoneApps(){
+    static void phoneApps(Human human){
+        human.setSalary(4000.0);
+        human.giveSalary();
         Phone phone = new Phone("Vivo","Y33s", 2021, 1200.0);
-        phone.installAnnApp("app1");
-        phone.installAnnApp("app2","2.0");
-        phone.installAnnApp("app3","2.0", "java.com");
-        phone.installAnnApp(new String[]{"app4","ap5"});
+        phone.installAnnApp("appF", human, 500.0);
+        phone.installAnnApp("appE",human, 1000.0, "2.0");
+        phone.installAnnApp("appD",human, 2000.0,"2.0", "java.com");
+        phone.installAnnApp(new String[]{"appC","appB"}, human, 100.0);
+        phone.installAnnApp("appA", human, 0.0);
         try {
-            phone.installAnnApp(new URL("https://java.com/myapp/version/2.5"));
+            phone.installAnnApp(new URL("https://java.com/myapp/version/2.5"), human, 5000.0);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         phone.getApplications();
+        System.out.println("Czy applikacja o nazwie `app3` jest zainstalowana" + phone.isApplicationInstalled("app3"));
+        System.out.println("Czy applikacja jest zainstalowana" + phone.isApplicationInstalled(phone.getApplication(0)));
+        phone.getFreeApplications();
+        phone.sortApplicationsByName();
+        phone.sortApplicationsByPrice();
     }
 
     static Human sellCar(Human seller){

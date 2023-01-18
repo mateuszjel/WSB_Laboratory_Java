@@ -2,21 +2,32 @@ package devices;
 
 import java.net.URL;
 
-public class PhoneApp {
+public class Application {
     private String name;
     private String version;
+    private Double price;
     private String serverAddress;
     private Integer serverPort;
     private URL urlAddress;
-    public PhoneApp(String name, String version, String serverAddress, Integer serverPort){
+    public Application(String name, String version, String serverAddress, Integer serverPort, Double price){
         this.name = name;
         this.version = version;
         this.serverAddress = serverAddress;
         this.serverPort = serverPort;
+        this.price = price;
     }
 
-    public PhoneApp(URL url){
+    public Application(URL url, Double price){
         this.urlAddress = url;
+        this.price = price;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public Double getPrice(){
+        return this.price;
     }
 
     @Override
@@ -27,6 +38,7 @@ public class PhoneApp {
                 ", serverAddress='" + serverAddress + '\'' +
                 ", serverPort=" + serverPort +
                 ", urlAddress=" + urlAddress +
+                ", price=" + price +
                 '}';
     }
 }
